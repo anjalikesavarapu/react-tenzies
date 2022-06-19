@@ -1,11 +1,12 @@
 import React from 'react';
-import './App.css';
+import './index.css';
 import Die from './components/Die';
 
 
 
 function App() {
 
+  const [dice, setDice] = React.useState(allNewDice())
   function allNewDice() {
     const newDice = []
     for (var i = 0; i < 10; i++) {
@@ -14,13 +15,16 @@ function App() {
     return newDice
   }
 
-  const [dice, setDice] = React.useState(allNewDice())
+  function rollDice() {
+    setDice(allNewDice())
+  }
 
   return (
     <main>
       <div className='dice--container'>
         {dice.map((die) => <Die value={die} />)}
       </div>
+      <button onClick={rollDice} className="btn-roll-dice">Roll Dice</button>
     </main>
   );
 }
